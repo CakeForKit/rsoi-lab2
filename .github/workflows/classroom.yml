@@ -20,7 +20,7 @@ jobs:
       - name: Run unit tests
         run: |
           for module in lb-core ms-flight ms-ticket ms-bonus ms-gateway; do
-            (cd "$module" && go test ./...)
+            (cd "$module" && GOWORK=off go test ./...)
           done
 
       - name: Build images
