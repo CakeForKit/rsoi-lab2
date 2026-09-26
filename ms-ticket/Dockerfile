@@ -1,8 +1,6 @@
 FROM golang:1.27 AS build
 WORKDIR /app
-COPY go.work go.work.sum ./
 COPY lb-core ./lb-core
-COPY lb-core/go.sum ./lb-core/go.sum
 COPY ms-ticket ./ms-ticket
 WORKDIR /app/ms-ticket
 RUN GOWORK=off go build -o /ticket ./cmd/application
