@@ -19,7 +19,7 @@ func Load(config any) error {
 	if err := viperConfig.ReadInConfig(); err != nil {
 		return fmt.Errorf("failed to read configuration file: %s\n", err.Error())
 	}
-	if err := viperConfig.Unmarshal(&config); err != nil {
+	if err := viperConfig.Unmarshal(config); err != nil {
 		return fmt.Errorf("unmarshal config: %w", err)
 	}
 	return nil

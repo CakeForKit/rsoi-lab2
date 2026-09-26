@@ -3,8 +3,9 @@ package db
 import (
 	"fmt"
 	"sync"
+	"time"
 
-	"github.com/CakeForKit/rsoi-lab1/internal/common/config"
+	"github.com/CakeForKit/rsoi-lab2/lb-core/config"
 	log "github.com/sirupsen/logrus"
 	"github.com/xlab/closer"
 	"gorm.io/driver/postgres"
@@ -42,10 +43,19 @@ func newDataSource(properties config.GormProperty) *gorm.DB {
 	if properties.ShowSql {
 		logLevel = logger.Info
 	}
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger:         logger.Default.LogMode(logLevel),
-		NamingStrategy: namingStrategy,
-	})
+	var db *gorm.DB
+	var err error
+	for attempt := 0; attempt < 15; attempt++ {
+		db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
+			Logger:         logger.Default.LogMode(logLevel),
+			NamingStrategy: namingStrategy,
+		})
+		if err == nil {
+			break
+		}
+		log.WithError(err).Warn("Waiting for postgres")
+		time.Sleep(2 * time.Second)
+	}
 	if err != nil {
 		log.WithError(err).Error("Couldn't connect to database postgres")
 		return nil

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/CakeForKit/rsoi-lab1/internal/common/custom_error"
+	"github.com/CakeForKit/rsoi-lab2/lb-core/custom_error"
 	"github.com/gin-gonic/gin"
 	"github.com/mdobak/go-xerrors"
 )

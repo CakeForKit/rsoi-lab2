@@ -2,9 +2,9 @@ port: 8060
 schemaDB: public
 
 postgres:
-  host: localhost
+  host: postgres
   port: 5432
-  database: rsoi_1
-  username: rsoi_1
-  password: rsoi_1
-  showSql: true
+  database: flights
+  username: program
+  password: test
+  showSql: false

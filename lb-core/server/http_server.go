@@ -3,9 +3,8 @@ package server
 import (
 	"fmt"
 
-	"github.com/CakeForKit/rsoi-lab1/internal/common/config"
-	"github.com/CakeForKit/rsoi-lab1/internal/common/controller"
-	"github.com/CakeForKit/rsoi-lab1/internal/common/utils"
+	"github.com/CakeForKit/rsoi-lab2/lb-core/config"
+	"github.com/CakeForKit/rsoi-lab2/lb-core/controller"
 	"github.com/gin-gonic/gin"
 )
 
@@ -30,6 +29,5 @@ func (server *httpServer) Run() error {
 	controller.NewHealthCheckController().RegisterHttpController(server.router)
 
 	server.startupFunc(server.router)
-	utils.CheckedError(server.router.Run(fmt.Sprintf(":%d", config.CoreConfig.Port)))
-	return nil
+	return server.router.Run(fmt.Sprintf(":%d", config.CoreConfig.Port))
 }

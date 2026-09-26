@@ -1,8 +1,6 @@
-version: "3"
 services:
   postgres:
     image: library/postgres:13
-    container_name: postgres
     restart: on-failure
     environment:
       POSTGRES_USER: postgres
@@ -14,7 +12,49 @@ services:
     ports:
       - "5432:5432"
 
-# TODO добавить сервисы
+  ms-flight:
+    build:
+      context: .
+      dockerfile: ms-flight/Dockerfile
+    environment:
+      DATABASE_URL: postgres://program:test@postgres:5432/flights?sslmode=disable
+    depends_on:
+      - postgres
+    ports:
+      - "8060:8060"
+
+  ms-ticket:
+    build:
+      context: .
+      dockerfile: ms-ticket/Dockerfile
+    environment:
+      DATABASE_URL: postgres://program:test@postgres:5432/tickets?sslmode=disable
+    depends_on:
+      - postgres
+    ports:
+      - "8070:8070"
+
+  ms-bonus:
+    build:
+      context: .
+      dockerfile: ms-bonus/Dockerfile
+    environment:
+      DATABASE_URL: postgres://program:test@postgres:5432/privileges?sslmode=disable
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"
+
+  ms-gateway:
+    build:
+      context: .
+      dockerfile: ms-gateway/Dockerfile
+    depends_on:
+      - ms-flight
+      - ms-ticket
+      - ms-bonus
+    ports:
+      - "8080:8080"
 
 volumes:
   db-data:

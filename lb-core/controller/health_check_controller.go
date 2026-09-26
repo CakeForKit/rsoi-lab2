@@ -15,7 +15,7 @@ func NewHealthCheckController() HttpController {
 }
 
 func (controller *healthCheckController) RegisterHttpController(router *gin.Engine) {
-	healthRouter := router.Group("/health")
+	healthRouter := router.Group("/manage/health")
 	healthRouter.GET("", controller.getHealth)
 }
 

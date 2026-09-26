@@ -1,18 +1,9 @@
-port: 8060
-schemaDB: public
-
-postgres:
-  host: localhost
-  port: 5432
-  database: rsoi_1
-  username: rsoi_1
-  password: rsoi_1
-  showSql: true
+port: 8080
 
 
 application:
   gateway:
     routes:
-      - id: ms-bonus
-        uri: http://localhost:8070
-        pathPrefix: /bonus
+      - id: ms-flight
+        uri: http://ms-flight:8060
+        pathPrefix: /flights

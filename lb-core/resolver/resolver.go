@@ -3,8 +3,8 @@ package resolver
 import (
 	"reflect"
 
-	"github.com/CakeForKit/rsoi-lab1/internal/common/custom_error"
-	"github.com/CakeForKit/rsoi-lab1/internal/common/utils"
+	"github.com/CakeForKit/rsoi-lab2/lb-core/custom_error"
+	"github.com/CakeForKit/rsoi-lab2/lb-core/utils"
 	"github.com/gin-gonic/gin"
 )
 

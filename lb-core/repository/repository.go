@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/CakeForKit/rsoi-lab1/internal/common/db"
+	"github.com/CakeForKit/rsoi-lab2/lb-core/db"
 	"gorm.io/gorm"
 )
 

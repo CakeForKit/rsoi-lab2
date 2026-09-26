@@ -1,7 +1,7 @@
 package utils
 
 import (
-	coreController "github.com/CakeForKit/rsoi-lab1/internal/common/controller"
+	coreController "github.com/CakeForKit/rsoi-lab2/lb-core/controller"
 	"github.com/gin-gonic/gin"
 	"github.com/xlab/closer"
 )
